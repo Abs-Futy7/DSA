@@ -71,7 +71,51 @@ void insertAtPosition(Node* &head, int val, int pos) {
     temp->next = new_node;
 }
 
+void updateAtPosition(Node* &head, int k, int val){
+  Node* temp = head;
+  int current_pos = 0;
+  while(current_pos!=k){
+    temp = temp->next;
+    current_pos++;
+  }
+  // temp will be pointing at the k-th node
+  temp->val = val;
+}
 
+void deleteAtHead(Node* &head){
+  Node* temp = head; //Node to be deleted
+  head = head->next;
+  free(temp);
+}
+
+
+void deleteAtEnd(Node* &head){
+  Node* second_last = head;
+  while(second_last->next->next!=NULL){
+    second_last = second_last->next;
+  }
+  Node* temp = second_last->next;
+  second_last->next = NULL;
+  free(temp);
+}
+
+void deleteAtPosition(Node* &head, int pos){
+  if(pos == 0){
+    deleteAtHead(head);
+    return;
+  }
+
+  int current_pos = 0;
+  Node* prev = head;
+  while(current_pos!= pos-1){
+    prev = prev->next;
+    current_pos++;
+  }
+  //prev is pointing to pos-1
+  Node* temp = prev->next;
+  prev->next = prev->next->next;
+  free(temp);
+}
 
 // Function to display the linked list starting from the given head
 void display(Node *head) {
@@ -107,5 +151,17 @@ int main() {
     display(head);
 
     insertAtPosition(head, 4, 1);
+    display(head);
+
+    updateAtPosition(head, 2, 5);
+    display(head);
+
+    deleteAtHead(head);
+    display(head);
+
+    deleteAtEnd(head);
+    display(head);
+
+    deleteAtPosition(head, 1);
     display(head);
 }
