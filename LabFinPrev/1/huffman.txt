@@ -1,0 +1,31 @@
+Step (a): Building the Huffman Tree
+
+    Character Frequency Calculation:
+        The frequency of each character in the text is computed.
+        Each character becomes a leaf node in the Huffman tree.
+
+    Min-Heap Construction:
+        A priority queue (min-heap) is built where the least frequent characters have the highest priority.
+
+    Tree Construction:
+        The two least frequent nodes are merged iteratively.
+        The merged node gets a new frequency equal to the sum of its children.
+        This process continues until a single tree remains.
+
+    Assigning Huffman Codes:
+        Left edge is assigned 0, right edge is assigned 1.
+        Traversing from root to each leaf gives the Huffman code.
+
+Step (b): Encoding "bob jumps over the river"
+
+    Each character in the phrase is replaced by its Huffman code from the table.
+    Encoded Output:
+
+    111011100011101101111001100100101110001111001100011001010101111101101101101110100111111110101110010101011111
+
+Step (c): Modifying the Huffman Tree to Include "u"
+
+    If "u" is missing:
+        Find the least frequent character in the tree.
+        Attach "u" as a new leaf while maintaining heap properties.
+        Recalculate Huffman codes.
